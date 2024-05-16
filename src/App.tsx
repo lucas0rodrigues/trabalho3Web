@@ -21,21 +21,26 @@ function App() {
     setProducts([...products, product]);
   };
 
+  const handleDeleteProduct = (id: number) => {
+    setProducts(products.filter((product) => product.id !== id));
+  };
 
-
-  
+  const handleEditProduct = (updatedProduct: Product) => {
+    setProducts(products.map((product) => (product.id === updatedProduct.id ? updatedProduct : product)));
+  };
+ 
   return (
     <div className="App">
-      <header className="App-header">
-        <RegisterProducts onAddProduct={handleAddProduct} />
-        <div className="product-list">
-          {products.map((product) => (
-            <CardProduct key={product.id} product={product} />
+    <header className="App-header">
+      <RegisterProducts onAddProduct={handleAddProduct} />
+      <div className="product-list">
+      {products.map((product) => (
+            <CardProduct key={product.id} product={product} onDeleteProduct={handleDeleteProduct} onEditProduct={handleEditProduct} />
           ))}
-        </div>
-      </header>
-    </div>
-  );
+      </div>
+    </header>
+  </div>
+);
 }
 
 export default App;

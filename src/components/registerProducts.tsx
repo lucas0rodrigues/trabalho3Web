@@ -46,9 +46,6 @@ const RegisterProducts: React.FC<RegisterProductsProps> = ({ onAddProduct }) => 
       id: Math.floor(Math.random() * 1000),
       name,
       price,
-
-
-      
       category,
       supplier,
       stock
