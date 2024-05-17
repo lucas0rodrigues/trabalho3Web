@@ -1,5 +1,5 @@
 import React from 'react';
-
+import './CardProduct.css'
 interface Product {
   id: number;
   name: string;

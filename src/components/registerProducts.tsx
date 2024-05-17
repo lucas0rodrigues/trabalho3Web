@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import './RegisterProducts.css'; // Adicione esta linha
 
 interface Product {
   id: number;

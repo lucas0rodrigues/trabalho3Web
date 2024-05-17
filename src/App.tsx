@@ -32,6 +32,7 @@ function App() {
 
   const handleEditProduct = (updatedProduct: Product) => {
     setProducts(products.map((product) => (product.id === updatedProduct.id ? updatedProduct : product)));
+    setIsModalOpen(false)
   };
 
   const openModal = (product: Product) => {
