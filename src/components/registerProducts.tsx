@@ -21,6 +21,8 @@ const RegisterProducts: React.FC<RegisterProductsProps> = ({ onAddProduct }) => 
   const [supplier, setSupplier] = useState<string>('');
   const [stock, setStock] = useState<string>('');
 
+  const [error, setError] = useState<string>('');
+
   const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setName(e.target.value);
   };
@@ -43,6 +45,12 @@ const RegisterProducts: React.FC<RegisterProductsProps> = ({ onAddProduct }) => 
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+
+    if (!name || !price || !category || !supplier || !stock) {
+      setError('Por favor, preencha todos os campos.');
+      return;
+    }
+
     const newProduct: Product = {
       id: Math.floor(Math.random() * 1000),
       name,
@@ -57,6 +65,7 @@ const RegisterProducts: React.FC<RegisterProductsProps> = ({ onAddProduct }) => 
     setCategory('');
     setSupplier('');
     setStock('');
+    setError('');
   };
 
   return (
@@ -66,6 +75,7 @@ const RegisterProducts: React.FC<RegisterProductsProps> = ({ onAddProduct }) => 
       <input type="text" placeholder="Categoria do Produto" value={category} onChange={handleCategoryChange} />
       <input type="text" placeholder="Fornecedor do Produto" value={supplier} onChange={handleSupplierChange} />
       <input type="text" placeholder="Estoque do Produto" value={stock} onChange={handleStockChange} />
+      {error && <p className="error">{error}</p>}
       <button type="submit">Cadastrar Produtos</button>
     </form>
   );

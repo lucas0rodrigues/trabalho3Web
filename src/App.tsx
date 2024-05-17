@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
-import logo from './logo.svg';
-import './App.css';
-import RegisterProducts from './components/registerProducts';
-import CardProduct from './components/cardProduct';
-import ReactModal from 'react-modal';
-import EditProductForm from './components/editProductForm';
+import React, { useState } from "react";
+import logo from "./logo.svg";
+import "./App.css";
+import RegisterProducts from "./components/registerProducts";
+import CardProduct from "./components/cardProduct";
+import ReactModal from "react-modal";
+import EditProductForm from "./components/editProductForm";
+import './ModalStyles.css';
 
 interface Product {
   id: number;
@@ -14,7 +15,7 @@ interface Product {
   supplier: string;
   stock: string;
 }
-ReactModal.setAppElement('#root');
+ReactModal.setAppElement("#root");
 
 function App() {
   const [products, setProducts] = useState<Product[]>([]);
@@ -31,8 +32,12 @@ function App() {
   };
 
   const handleEditProduct = (updatedProduct: Product) => {
-    setProducts(products.map((product) => (product.id === updatedProduct.id ? updatedProduct : product)));
-    setIsModalOpen(false)
+    setProducts(
+      products.map((product) =>
+        product.id === updatedProduct.id ? updatedProduct : product
+      )
+    );
+    setIsModalOpen(false);
   };
 
   const openModal = (product: Product) => {
@@ -45,19 +50,33 @@ function App() {
     setCurrentProduct(null);
   };
 
- 
-   return (
+  return (
     <div className="App">
       <header className="App-header">
         <RegisterProducts onAddProduct={handleAddProduct} />
         <div className="product-list">
           {products.map((product) => (
-            <CardProduct key={product.id} product={product} onDeleteProduct={handleDeleteProduct} onEditProduct={openModal} />
+            <CardProduct
+              key={product.id}
+              product={product}
+              onDeleteProduct={handleDeleteProduct}
+              onEditProduct={openModal}
+            />
           ))}
         </div>
         {currentProduct && (
-          <ReactModal isOpen={isModalOpen} onRequestClose={closeModal} contentLabel="Edit Product">
-            <EditProductForm product={currentProduct} onSave={handleEditProduct} onClose={closeModal} />
+          <ReactModal
+            isOpen={isModalOpen}
+            onRequestClose={closeModal}
+            contentLabel="Edit Product"
+            className="modal-content"
+            overlayClassName="modal-overlay"
+          >
+            <EditProductForm
+              product={currentProduct}
+              onSave={handleEditProduct}
+              onClose={closeModal}
+            />
           </ReactModal>
         )}
       </header>

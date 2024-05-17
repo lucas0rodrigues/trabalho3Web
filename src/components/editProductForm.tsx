@@ -37,7 +37,7 @@ const EditProductForm: React.FC<EditProductFormProps> = ({ product, onSave, onCl
       <input type="text" name="supplier" value={editedProduct.supplier} onChange={handleChange} placeholder="Fornecedor do Produto" />
       <input type="text" name="stock" value={editedProduct.stock} onChange={handleChange} placeholder="Estoque do Produto" />
       <button type="submit" >Salvar</button>
-      <button type="button" onClick={onClose}>Cancelar</button>
+      <button type="button" onClick={onClose} color='red'>Cancelar</button>
     </form>
   );
 };

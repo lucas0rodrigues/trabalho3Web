@@ -43,3 +43,10 @@ form {
     background-color: #40a9ff;
   }
   
+  .error {
+    color: red;
+    font-size: 14px;
+    margin-top: -10px;
+    margin-bottom: 10px;
+  }
+  
